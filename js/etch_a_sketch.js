@@ -46,6 +46,30 @@ function makeGrid(height, width, nbSquare){
 
 }
 
+
+/*Put background color black */
+let btnBlackBackground = document.querySelector("#blackBackground");
+btnBlackBackground.addEventListener("click", () => {
+  let the_divs = document.querySelectorAll(".gridDiv");
+
+  the_divs.forEach((the_div) => {
+    the_div.addEventListener("mouseover", () => {
+      the_div.style.background = "black";
+    });
+  });
+});
+
+/*Put background color white */
+let resetGridBackground = document.querySelector('#resetGridBackground');
+resetGridBackground.addEventListener('click', ()=> {
+   let divGrids = document.querySelectorAll(".gridDiv");
+
+   divGrids.forEach((divGrid) => {
+     divGrid.style.background = "white";
+   });
+});
+
+
 /*managing range  */
 let range = document.querySelector("#rangeGrid");
 range.value = 16;
@@ -57,6 +81,9 @@ range.addEventListener('change', (e) =>{
     rangeTexInput.value = range.value;
     makeGrid(grid.clientHeight, grid.clientWidth, range.value);
 });
+
+
+
 
 
 makeGrid(grid.clientHeight, grid.clientWidth, 16);
