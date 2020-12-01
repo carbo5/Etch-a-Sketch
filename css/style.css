@@ -7,15 +7,36 @@ body{
     font-family: 'Sansita Swashed', cursive;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
 section{
     display: flex;
 }
 
+input[type="text"] {
+    border: 1px solid black;
+    width: 40px;
+    text-align: center;
+    background: red;
+    color: white;
+    padding: 4px 4px;
+    margin: 2%;
+   /* position: absolute;*/
+    border-radius: 20px;
+   /* left: 50%;*/
+    /*transform: translateX(-50%);*/
+  }
+
+  
+
 #game-container{
     display: flex;
-    width: 85vh;
-    height: 85vh;
-    border: 3px solid black;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
 }
 
 
@@ -24,14 +45,19 @@ section{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /*flex-shrink: 1;*/
     justify-content: flex-start;
     width: 100%;
     height: 100%;
-    border: 3px solid red;
+    border: 1px solid red;
     background-color: white;
 }
 
 .gridDiv{
+    display: flex;
+    
+    /*flex-shrink: 1;*/
     border: 1px solid lightgrey;
     background-color: white;
+    flex-grow: 1;
 }
