@@ -1,7 +1,7 @@
 var grid = document.querySelector('#red-container');
 
-console.log(grid.clientWidth);
-console.log(grid);
+//console.log(grid.clientWidth);
+//console.log(grid);
 
 
 
@@ -13,14 +13,14 @@ function makeGrid(height, width, nbSquare){
 
    // let divWidth =  (width - 14 - remBorder) / nbSquare;
 
-   let divWidth =  width / nbSquare;
+   let divWidth =  width / nbSquare; //Largeur de chaque carré
 
     console.log(divWidth);
     
 
   //  let divHeight = (height - 14 - remBorder) / nbSquare;
 
-  let divHeight = height / nbSquare;
+  let divHeight = height / nbSquare; //hauteur de chaque carré
 
     console.log(divHeight);
     const totalSquare =  nbSquare * nbSquare;
