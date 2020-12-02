@@ -2,6 +2,16 @@
     box-sizing: border-box; /*Permet d'éviter de gérer les borders pour le grid*/
 }
 
+header{
+    text-align: center;
+    padding: 2%;
+}
+
+main{
+    text-align: center;
+    border: 1px solid black;
+}
+
 
 body{
     font-family: 'Sansita Swashed', cursive;
@@ -9,11 +19,17 @@ body{
 
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 section{
     display: flex;
+}
+
+#game-control{
+    display: flex;
+    flex-direction: column;
+
 }
 
 input[type="text"] {
@@ -34,6 +50,7 @@ input[type="text"] {
 
 #game-container{
     display: flex;
+    justify-content: space-around;
     width: 500px;
     height: 500px;
     border: 1px solid black;

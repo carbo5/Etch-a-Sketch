@@ -59,13 +59,45 @@ btnBlackBackground.addEventListener("click", () => {
   });
 });
 
+//Put a random color
+//Math.floor(Math.random() * 256);
+let btnRandomBackground = document.querySelector("#randomBackground");
+btnRandomBackground.addEventListener("click", () => {
+  let the_divs = document.querySelectorAll(".gridDiv");
+
+  the_divs.forEach((the_div) => {
+    the_div.addEventListener("mouseover", () => {
+      the_div.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+    });
+  });
+});
+
+//Choose your color
+function colorPicker(e){
+  let the_divs = document.querySelectorAll(".gridDiv");
+
+  the_divs.forEach((the_div) => {
+    the_div.addEventListener("mouseover", () => {
+      the_div.style.backgroundColor = `${e.target.value}`;
+    });
+  });
+}
+
+
+let chooseYourColor = document.querySelector("#chooseYourColor");
+chooseYourColor.addEventListener('change', colorPicker);
+  
+
+
+
+
 /*Put background color white */
 let resetGridBackground = document.querySelector('#resetGridBackground');
 resetGridBackground.addEventListener('click', ()=> {
    let divGrids = document.querySelectorAll(".gridDiv");
 
    divGrids.forEach((divGrid) => {
-     divGrid.style.background = "white";
+     divGrid.style.backgroundColor = "white";
    });
 });
 
