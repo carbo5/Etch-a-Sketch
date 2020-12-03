@@ -1,14 +1,57 @@
-var grid = document.querySelector('#red-container');
+//Déclaration de variables
+let grid = document.querySelector('#red-container');
+let color_background = 'white';
+let choose_picker_color;
+
+
+
+const resetBackground = document.querySelector("#resetGridBackground");
+resetBackground.addEventListener('click', resetBackgroundDiv);
+
+function resetBackgroundDiv(){
+  const divGrids = document.querySelectorAll('.gridDiv');
+  color_background = 'white';
+  divGrids.forEach((divGrid) => {
+    divGrid.style.backgroundColor = color_background;
+    divGrid.style.opacity = "";
+  })
+}
+
+
+function colorBackGround(){
+
+  //console.log(color_background);
+  //console.log(choose_picker_color);
+  switch(color_background){
+    
+    case 'white': this.style.backgroundColor = color_background;
+                  this.style.opacity = "";
+    break;
+    
+    case 'black' : this.style.backgroundColor = color_background;
+                    this.style.opacity = ""; 
+    break;
+
+    case 'random' : this.style.backgroundColor = randomBackground();
+                    this.style.opacity = "";
+    break;
+    
+    case 'colorPicker': this.style.backgroundColor = choose_picker_color;
+                         // console.log(this.style.backgroundColor);
+                         this.style.opacity = "";
+    break;
+
+    case 'greyscale' : this.style.backgroundColor = `rgb(0,0,0)`;
+                        manageOpacity(this)
+                       console.log(this.style.opacity) 
+
+  }
+}
+
 
 //console.log(grid.clientWidth);
 //console.log(grid);
-
-
-
-
 function makeGrid(height, width, nbSquare){
-
-
 
     const redDiv = document.querySelector('#red-container');
     redDiv.innerHTML = "";
@@ -33,8 +76,7 @@ function makeGrid(height, width, nbSquare){
        // console.log('div');
         squareDiv = document.createElement('div');
         squareDiv.classList.add('gridDiv');
-
-        
+        squareDiv.addEventListener('mouseover', colorBackGround);
 
         squareDiv.style.width = (100 / nbSquare) + '%';
         squareDiv.style.height = (100 / nbSquare) + '%';
@@ -49,59 +91,58 @@ function makeGrid(height, width, nbSquare){
 
 /*Put background color black */
 let btnBlackBackground = document.querySelector("#blackBackground");
-btnBlackBackground.addEventListener("click", () => {
-  let the_divs = document.querySelectorAll(".gridDiv");
+btnBlackBackground.addEventListener("click", blackBackground );
 
-  the_divs.forEach((the_div) => {
-    the_div.addEventListener("mouseover", () => {
-      the_div.style.background = "black";
-    });
-  });
-});
-
-//Put a random color
-//Math.floor(Math.random() * 256);
 let btnRandomBackground = document.querySelector("#randomBackground");
-btnRandomBackground.addEventListener("click", () => {
-  let the_divs = document.querySelectorAll(".gridDiv");
+btnRandomBackground.addEventListener("click", randomBackground);
 
-  the_divs.forEach((the_div) => {
-    the_div.addEventListener("mouseover", () => {
-      the_div.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-    });
-  });
-});
+/*Eraser*/
+let eraser = document.querySelector('#erase');
+eraser.addEventListener('click', whiteBackground);
+
 
 //Choose your color
 function colorPicker(e){
-  let the_divs = document.querySelectorAll(".gridDiv");
-
-  the_divs.forEach((the_div) => {
-    the_div.addEventListener("mouseover", () => {
-      the_div.style.backgroundColor = `${e.target.value}`;
-    });
-  });
+  color_background = 'colorPicker';
+  choose_picker_color = `${e.target.value}`;
+  
 }
 
 
 let chooseYourColor = document.querySelector("#chooseYourColor");
 chooseYourColor.addEventListener('change', colorPicker);
-  
+//Fin de choose your color  
 
 
+function whiteBackground(){
+  color_background = 'white';
+}
 
+function blackBackground(){
+  color_background  = 'black';
+}
 
-/*Put background color white */
-let resetGridBackground = document.querySelector('#resetGridBackground');
-resetGridBackground.addEventListener('click', ()=> {
-   let divGrids = document.querySelectorAll(".gridDiv");
+function randomBackground(){
+  color_background = 'random';
+  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+}
 
-   divGrids.forEach((divGrid) => {
-     divGrid.style.backgroundColor = "white";
-   });
-});
 
 //Greyscale
+function greyscale(){
+  color_background = 'greyscale';
+}
+
+function manageOpacity(the_div){
+  if(the_div.style.opacity === ''){
+    the_div.style.opacity = 0.1;
+  }else if(the_div.style.opacity !== '1') {
+    the_div.style.opacity = Number(the_div.style.opacity) + 0.1;
+  }
+}
+
+const btnGreyscale = document.querySelector('#greyscale');
+btnGreyscale.addEventListener('click', greyscale);
 //rgb(220,220,220), rgb(211,211,211),rgb(192,192,192), rgb(169,169,169), rgb(128,128,128)
 //rgb(105,105,105),  	rgb(119,136,153), rgb(112,128,144), rgb(47,79,79), rgb(0,0,0)
 
@@ -117,9 +158,5 @@ range.addEventListener('change', (e) =>{
     rangeTexInput.value = range.value;
     makeGrid(grid.clientHeight, grid.clientWidth, range.value);
 });
-
-
-
-
 
 makeGrid(grid.clientHeight, grid.clientWidth, 16);
